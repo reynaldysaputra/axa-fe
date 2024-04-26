@@ -2,7 +2,7 @@ import React from 'react'
 import { Link, useLocation } from 'react-router-dom';
 
 function CardPost({post}) {
-  const {id= 2, title, body } = post;
+  const {id, title, body } = post;
   const location = useLocation();
 
   return (

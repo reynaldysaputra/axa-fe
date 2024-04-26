@@ -14,7 +14,7 @@ function HomePage() {
 
   return (
     <div>
-      <h1 className='px-5 font-bold text-2xl my-5'>List Users</h1>
+      <h1 className='px-5 font-bold text-2xl my-5'>List of Users</h1>
       <div className='flex w-full flex-wrap'>
         {users.length ? (
           users.map(user => 

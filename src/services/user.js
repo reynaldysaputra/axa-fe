@@ -7,18 +7,33 @@ export const getUsers = async () => {
   return user;
 }
 
-export const getUserDetail = async (id) => {
-  const user = await axios.get(`${url}/users/${id}`)
+export const getUserDetail = async (idUser) => {
+  const user = await axios.get(`${url}/users/${idUser}`)
   return user;
 }
 
-export const getUserPosts = async (id) => {
-  const userPosts = await axios.get(`${url}/users/${id}/posts`)
+export const getUserPosts = async (idUser) => {
+  const userPosts = await axios.get(`${url}/users/${idUser}/posts`)
   return userPosts;
 }
 
-export const getUserAlbums = async (id) => {
-  const userAlbums = await axios.get(`${url}/users/${id}/albums`)
+export const getUserAlbums = async (idUser) => {
+  const userAlbums = await axios.get(`${url}/users/${idUser}/albums`)
   return userAlbums;
 
+}
+
+export const getUserPost = async (idUser, idPost) => {
+  const userPost = await axios.get(`${url}/users/${idUser}/posts?id=${idPost}`)
+  return userPost;
+}
+
+export const getUserCommentsOfPost = async (idPost) => {
+  const userPost = await axios.get(`${url}/posts/${idPost}/comments`)
+  return userPost;
+}
+
+export const getUserPhotosOfAlbums = async (idAlbum) => {
+  const userPhotos = await axios.get(`${url}/albums/${idAlbum}/photos`)
+  return userPhotos;
 }
