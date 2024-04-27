@@ -6,7 +6,7 @@ function CardAlbum({album}) {
   const location = useLocation();
 
   return (
-    <Link to={`${location.pathname}/album/${id}`}>
+    <Link to={`${location.pathname}/album/${id}`} state={{titleAlbum: title}}>
       <div className='w-auto p-10 shadow-md rounded-md bg-white cursor-pointer hover:shadow-sm transition'>
         <p className='font-bold text-1xl'>{title}</p>
       </div>

@@ -1,9 +1,9 @@
 import React from 'react';
 import { useLoaderData, useNavigate } from 'react-router-dom';
-import Accordion from '../../components/accordion';
-import CardAlbum from '../../components/card-album';
-import CardPost from '../../components/card-post';
 import { getUserAlbums, getUserDetail, getUserPosts } from '../../services/user';
+import DetailUserSection from './section/detail-user';
+import PostsUserSection from './section/posts-user';
+import AlbumsUserSection from './section/albums-user';
 
 export const userLoader = async ({ request }) => {
   const url = new URL(request.url);
@@ -24,8 +24,7 @@ export const userLoader = async ({ request }) => {
 
 function UserPage() {
   const { userDetail, userPosts, userAlbums } = useLoaderData();
-  const {name, username, email, phone, website, company} = userDetail;
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   return (
     <div className='w-full p-10'>
@@ -36,64 +35,14 @@ function UserPage() {
         Back 
       </h1>
 
-      <section>
-        <h1 className='font-bold text-2xl mb-2'>Detail User</h1>
-        <h2 className='font-bold flex'>
-          Name: &nbsp; 
-          <p className="font-normal">{name}</p>        
-        </h2>
-        <h2 className='font-bold flex'>
-          Username: &nbsp;   
-          <p className="font-normal">{username}</p>              
-        </h2>
-        <h2 className='font-bold flex'>
-          Email: &nbsp;         
-          <p className="font-normal">{email}</p>        
-        </h2>
-        <h2 className='font-bold flex'>
-          Phone: &nbsp;         
-          <p className="font-normal">{phone}</p>        
-        </h2>
-        <h2 className='font-bold flex'>
-          Website: &nbsp;
-          <p className="font-normal">{website}</p>        
-        </h2>
-        <h2 className='font-bold flex'>
-          Company: &nbsp;    
-          <p className="font-normal">{company?.name}</p>             
-        </h2>
-      </section>
+      {/* Section Detail of User */}
+      <DetailUserSection userDetail={userDetail} />
 
+      {/* Section Accordion Posts and Albums */}
       <section className='w-full border-black border-t-2 my-10 py-5'>
-        <Accordion
-          title={"Posts"}
-          answer={(
-            <div className='w-full flex flex-wrap gap-10 my-5'>
-              {userPosts.length ? (
-                userPosts.map(post => 
-                  <CardPost key={post.id} post={post}/>
-                )
-              ) : (
-                <h1 className='px-5 font-bold'>No Posts User!</h1>
-              )}
-            </div>
-          )}
-        />   
+        <PostsUserSection userPosts={userPosts} />
 
-        <Accordion
-          title={"Albums"}
-          answer={(
-            <div className='w-full flex flex-wrap gap-10 my-5'>
-              {userAlbums.length ? (
-                userAlbums.map(album => 
-                  <CardAlbum key={album.id} album={album} />
-                )
-              ) : (
-                <h1 className='px-5 font-bold'>No Albums User!</h1>
-              )}
-            </div>
-          )}
-        />     
+        <AlbumsUserSection userAlbums={userAlbums} />
       </section>
     </div>
   )

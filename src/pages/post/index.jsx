@@ -1,7 +1,10 @@
 import React from 'react'
+import { IoAddCircleOutline } from 'react-icons/io5';
 import { useLoaderData, useNavigate } from 'react-router-dom';
-import CardComments from '../../../components/card-comments';
-import { getUserCommentsOfPost, getUserPost } from '../../../services/user';
+import CardComments from '../../components/card-comments';
+import { getUserCommentsOfPost, getUserPost } from '../../services/user';
+import CommentUserSection from './section/comment-user';
+import DetailPostUserSection from './section/detail-post-user';
 
 export const userPostLoader = async ({request}) => {
   const url = new URL(request.url);
@@ -32,25 +35,13 @@ function UserPostPage() {
       
       <h2 className='font-bold text-2xl'>Detail Post User</h2>
       
-      <div className='mt-14'>
-        <h1 className='font-bold'>{post.title}</h1>
-        <p>{post.body}</p>
-      </div>
+      <DetailPostUserSection post={post} />
 
       <div className='my-10'>
         <hr />
       </div>
 
-      <div>
-        <h1 className='font-bold'>{comments.length} Comments</h1>
-        {comments.length ? (
-          comments.map(comment => 
-            <CardComments key={comment.id} comment={comment}/>
-          )
-        ) : (
-          <h1 className='px-5 font-bold'>No Posts User!</h1>
-        )}
-      </div>
+      <CommentUserSection comments={comments} />
     </div>
   )
 }

@@ -15,7 +15,7 @@ function HomePage() {
   return (
     <div>
       <h1 className='px-5 font-bold text-2xl my-5'>List of Users</h1>
-      <div className='flex w-full flex-wrap'>
+      <div className='flex w-full flex-wrap gap-5 px-5 mb-5'>
         {users.length ? (
           users.map(user => 
             <CardUser key={user.id} user={user}/>

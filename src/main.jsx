@@ -4,13 +4,15 @@ import './index.css'
 import { RouterProvider } from 'react-router-dom';
 import router from './pages/routes';
 import Layout from './components/layout';
+import { Provider } from 'react-redux';
+import { store } from './store';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <div>
-      <Layout>
+    <Layout>
+      <Provider store={store}>
         <RouterProvider router={router} />
-      </Layout>
-    </div>
+      </Provider>
+    </Layout>
   </React.StrictMode>,
 )

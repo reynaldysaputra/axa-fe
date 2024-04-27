@@ -20,7 +20,6 @@ export const getUserPosts = async (idUser) => {
 export const getUserAlbums = async (idUser) => {
   const userAlbums = await axios.get(`${url}/users/${idUser}/albums`)
   return userAlbums;
-
 }
 
 export const getUserPost = async (idUser, idPost) => {

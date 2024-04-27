@@ -1,7 +1,7 @@
 import React from 'react'
-import { useLoaderData, useNavigate } from 'react-router-dom';
-import CardPhoto from '../../../components/card-photo';
-import { getUserPhotosOfAlbums } from '../../../services/user';
+import { useLoaderData, useLocation, useNavigate } from 'react-router-dom';
+import CardPhoto from '../../components/card-photo';
+import { getUserPhotosOfAlbums } from '../../services/user';
 
 export const userPhotosOfAlbumLoader = async ({request}) => {
   const url = new URL(request.url);
@@ -17,6 +17,7 @@ export const userPhotosOfAlbumLoader = async ({request}) => {
 function UserAlbumPage() {
   const { photos } = useLoaderData();
   const navigate = useNavigate();
+  let { state } = useLocation();
 
   return (
     <div className='p-10'>
@@ -26,7 +27,8 @@ function UserAlbumPage() {
       > 
         Back 
       </h1>
-      <h1 className='font-bold text-2xl'>{photos.length} photos from the abc Album</h1>
+
+      <h1 className='font-bold text-2xl'>{photos.length} photos from the {state?.titleAlbum} Album</h1>
       {photos.length ? (
         <div className='flex flex-wrap gap-5 my-5'>
           {photos.map(photo => 

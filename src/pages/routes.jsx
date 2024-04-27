@@ -2,11 +2,11 @@ import { createBrowserRouter } from "react-router-dom";
 import HomePage, { homeLoader } from "./home";
 import ErrorPageHome from "./home/error-page";
 import UserPage, { userLoader } from "./user";
-import UserAlbumPage, { userPhotosOfAlbumLoader } from "./user/album";
-import ErrorPageUserAlbum from "./user/album/error-page";
+import UserAlbumPage, { userPhotosOfAlbumLoader } from "./album";
+import ErrorPageUserAlbum from "./album/error-page";
 import ErrorPageUser from "./user/error-page";
-import UserPostPage, { userPostLoader } from "./user/post";
-import ErrorPageUserPost from "./user/post/error-page";
+import UserPostPage, { userPostLoader } from "./post";
+import ErrorPageUserPost from "./post/error-page";
 
 const router = createBrowserRouter([
   {
