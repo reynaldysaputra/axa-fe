@@ -2,12 +2,13 @@ import React from "react";
 import Accordion from "../../../components/accordion";
 import CardPost from "../../../components/card-post";
 import { IoAddCircleOutline } from "react-icons/io5";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { openFormPost } from "../../../state/post-slice";
 import FormModal from "../../../components/form-modal";
 
-function PostsUserSection({ userPosts }) {
+function PostsUserSection() {
   const dispatch = useDispatch();
+  const {userPosts: state} = useSelector((state) => state.post);
 
   return (
     <div>
@@ -28,23 +29,21 @@ function PostsUserSection({ userPosts }) {
               />
             </button>
 
-            {userPosts.length ? (
-              <div className="w-full flex flex-wrap gap-10 my-5">
-                {userPosts.map((post) => (
+            {state.length ? (
+              <div className="w-full flex flex-col gap-10 my-5">
+                {state.map((post) => (
                   <CardPost key={post.id} post={post} />
                 ))}
               </div>
             ) : (
-              <h1 className="px-5 font-bold">No Posts User!</h1>
+              <h1 className="mt-5 font-bold">No Posts User!</h1>
             )}
           </div>
         }
       />
 
       {/* Modal Add Form */}
-      <FormModal
-        type={"post"}
-      />
+      <FormModal type={"post"}/>
     </div>
   );
 }

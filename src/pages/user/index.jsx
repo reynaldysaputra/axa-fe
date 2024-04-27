@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useLoaderData, useNavigate } from 'react-router-dom';
 import { getUserAlbums, getUserDetail, getUserPosts } from '../../services/user';
 import DetailUserSection from './section/detail-user';
 import PostsUserSection from './section/posts-user';
 import AlbumsUserSection from './section/albums-user';
+import { useDispatch } from 'react-redux';
+import { initialStatePosts } from '../../state/post-slice';
 
 export const userLoader = async ({ request }) => {
   const url = new URL(request.url);
@@ -25,6 +27,9 @@ export const userLoader = async ({ request }) => {
 function UserPage() {
   const { userDetail, userPosts, userAlbums } = useLoaderData();
   const navigate = useNavigate();
+  const dispatch = useDispatch();  
+
+  useEffect(() => {dispatch(initialStatePosts(userPosts))}, [])
 
   return (
     <div className='w-full p-10'>
@@ -40,7 +45,7 @@ function UserPage() {
 
       {/* Section Accordion Posts and Albums */}
       <section className='w-full border-black border-t-2 my-10 py-5'>
-        <PostsUserSection userPosts={userPosts} />
+        <PostsUserSection />
 
         <AlbumsUserSection userAlbums={userAlbums} />
       </section>

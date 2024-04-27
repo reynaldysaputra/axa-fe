@@ -1,8 +1,8 @@
-import React from 'react'
-import { IoAddCircleOutline } from 'react-icons/io5';
+import React, { useEffect } from 'react'
+import { useDispatch } from 'react-redux';
 import { useLoaderData, useNavigate } from 'react-router-dom';
-import CardComments from '../../components/card-comments';
 import { getUserCommentsOfPost, getUserPost } from '../../services/user';
+import { initialStateComment } from '../../state/comment-slice';
 import CommentUserSection from './section/comment-user';
 import DetailPostUserSection from './section/detail-post-user';
 
@@ -23,6 +23,9 @@ export const userPostLoader = async ({request}) => {
 function UserPostPage() {
   const {post, comments} = useLoaderData();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  useEffect(() => {dispatch(initialStateComment(comments))}, [])
 
   return (
     <div className='p-10'>

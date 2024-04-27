@@ -2,10 +2,10 @@ import React from 'react'
 import { AiOutlineDelete } from 'react-icons/ai';
 import { MdOutlineModeEdit } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
-import { editFormComment, openFormComment } from '../../state/comment-slice';
+import { deleteComment, editFormComment, openFormComment, updateStateFormComment } from '../../state/comment-slice';
 
 function CardComments({comment}) {
-  const {email, name, body} = comment;
+  const {id, email, name, body} = comment;
   const dispatch = useDispatch();
 
   return (
@@ -20,6 +20,7 @@ function CardComments({comment}) {
                 e.preventDefault();
                 dispatch(openFormComment(true));
                 dispatch(editFormComment(true));
+                dispatch(updateStateFormComment({id, email, name, body}))
               }}
             />
             <AiOutlineDelete 
@@ -27,6 +28,7 @@ function CardComments({comment}) {
               color="red" 
               onClick={(e) => {
                 e.preventDefault();
+                dispatch(deleteComment({id}));
               }}
             />
           </div>
