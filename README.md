@@ -12,6 +12,6 @@ point 2 => Aku berhasil mendapatkan beberapa data dari api https://jsonplacehold
 
 point 3 => Aku menggunakan TailwindCSS untuk UI, ReactJS sebagai frameworknya, dan redux sebagai state managementnya.
 
-point 4 => Karena tidak ada design figma yang diberikan, jadi aku membuat desain sederhana yang simple untuk digunakana user
+point 4 => Karena tidak ada design figma yang diberikan, jadi aku membuat desain sederhana yang simple untuk digunakan user
 
 point54 => Anda juga dapat melihat hasil test dari test ini yang sudah aku deploy di link berikut https://axa-test-e772f.web.app/
