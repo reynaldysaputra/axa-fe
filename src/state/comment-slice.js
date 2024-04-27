@@ -1,19 +1,19 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   userComments: [],
-  isOpenFormComment: false,  
+  isOpenFormComment: false,
   isEditFormComment: false,
   stateFormComment: {
     id: "",
     name: "",
     email: "",
-    body: ""
-  }
-}
+    body: "",
+  },
+};
 
 export const commentSlice = createSlice({
-  name: 'counter',
+  name: "counter",
   initialState,
   reducers: {
     initialStateComment: (state, data) => {
@@ -38,22 +38,24 @@ export const commentSlice = createSlice({
       state.isEditFormComment = false;
     },
     editComment: (state, data) => {
-      const newComment = state.userComments.filter(comment => {
-        if(comment.id === data.payload.id) {
-          comment.email= data.payload.email;
-          comment.name= data.payload.name;
-          comment.body= data.payload.body;
+      const newComment = state.userComments.filter((comment) => {
+        if (comment.id === data.payload.id) {
+          comment.email = data.payload.email;
+          comment.name = data.payload.name;
+          comment.body = data.payload.body;
         }
 
         return comment;
-      })
+      });
 
       state.userComments = newComment;
       state.isOpenFormComment = false;
       state.isEditFormComment = false;
     },
     deleteComment: (state, data) => {
-      state.userComments = state.userComments.filter(comment => comment.id !== data.payload.id);
+      state.userComments = state.userComments.filter(
+        (comment) => comment.id !== data.payload.id
+      );
       state.isOpenFormComment = false;
       state.isEditFormComment = false;
     },
@@ -62,10 +64,18 @@ export const commentSlice = createSlice({
     },
     editFormComment: (state, data) => {
       state.isEditFormComment = data.payload;
-    }
+    },
   },
-})
+});
 
-export const { initialStateComment, updateStateFormComment, addNewComment, editComment, deleteComment,  openFormComment, editFormComment } = commentSlice.actions
+export const {
+  initialStateComment,
+  updateStateFormComment,
+  addNewComment,
+  editComment,
+  deleteComment,
+  openFormComment,
+  editFormComment,
+} = commentSlice.actions;
 
-export default commentSlice.reducer
+export default commentSlice.reducer;

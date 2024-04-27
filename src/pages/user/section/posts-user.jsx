@@ -8,7 +8,7 @@ import FormModal from "../../../components/form-modal";
 
 function PostsUserSection() {
   const dispatch = useDispatch();
-  const {userPosts: state} = useSelector((state) => state.post);
+  const { userPosts: state } = useSelector((state) => state.post);
 
   return (
     <div>
@@ -43,7 +43,7 @@ function PostsUserSection() {
       />
 
       {/* Modal Add Form */}
-      <FormModal type={"post"}/>
+      <FormModal type={"post"} />
     </div>
   );
 }

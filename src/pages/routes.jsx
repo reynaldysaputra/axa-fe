@@ -10,29 +10,29 @@ import ErrorPageUserPost from "./post/error-page";
 
 const router = createBrowserRouter([
   {
-    path: "/",    
+    path: "/",
     loader: homeLoader,
-    element: <HomePage/>,
-    errorElement: <ErrorPageHome/>
+    element: <HomePage />,
+    errorElement: <ErrorPageHome />,
   },
   {
     path: "user/:idUser",
     loader: userLoader,
-    element: <UserPage/>,
-    errorElement: <ErrorPageUser/>
+    element: <UserPage />,
+    errorElement: <ErrorPageUser />,
   },
   {
     path: "user/:idUser/post/:idPost",
     loader: userPostLoader,
-    element: <UserPostPage/>,
-    errorElement: <ErrorPageUserPost/>
+    element: <UserPostPage />,
+    errorElement: <ErrorPageUserPost />,
   },
   {
     path: "user/:idUser/album/:idAlbum",
     loader: userPhotosOfAlbumLoader,
-    element: <UserAlbumPage/>,
-    errorElement: <ErrorPageUserAlbum/>
-  }
+    element: <UserAlbumPage />,
+    errorElement: <ErrorPageUserAlbum />,
+  },
 ]);
 
 export default router;

@@ -1,22 +1,27 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   userPosts: [],
-  isOpenFormPost: false,  
-  isEditFormPost: false,  
+  isOpenFormPost: false,
+  isEditFormPost: false,
   stateFormPost: {
     id: "",
     title: "",
-    body: ""
-  }
-}
+    body: "",
+  },
+};
 
 export const postsSlice = createSlice({
-  name: 'counter',
+  name: "counter",
   initialState,
   reducers: {
     initialStatePosts: (state, data) => {
       state.userPosts = data.payload;
+    },
+    updateStateFormPost: (state, data) => {
+      state.stateFormPost.id = data.payload.id;
+      state.stateFormPost.title = data.payload.title;
+      state.stateFormPost.body = data.payload.body;
     },
     addNewPost: (state, data) => {
       state.userPosts.unshift({
@@ -29,20 +34,15 @@ export const postsSlice = createSlice({
       state.isOpenFormPost = false;
       state.isEditFormPost = false;
     },
-    updateStateFormPost: (state, data) => {
-      state.stateFormPost.id = data.payload.id;
-      state.stateFormPost.title = data.payload.title;
-      state.stateFormPost.body = data.payload.body;
-    },
     editPost: (state, data) => {
-      const newPostUpdate = state.userPosts.filter(post => {
-        if(post.id === data.payload.id) {
-          post.title= data.payload.title;
-          post.body= data.payload.body;
+      const newPostUpdate = state.userPosts.filter((post) => {
+        if (post.id === data.payload.id) {
+          post.title = data.payload.title;
+          post.body = data.payload.body;
         }
 
         return post;
-      })
+      });
 
       state.userPosts = newPostUpdate;
       state.isOpenFormPost = false;
@@ -51,7 +51,9 @@ export const postsSlice = createSlice({
       state.stateFormPost.body = "";
     },
     deletePost: (state, data) => {
-      state.userPosts = state.userPosts.filter(post => post.id !== data.payload.id);
+      state.userPosts = state.userPosts.filter(
+        (post) => post.id !== data.payload.id
+      );
       state.isOpenFormPost = false;
       state.isEditFormPost = false;
     },
@@ -60,10 +62,18 @@ export const postsSlice = createSlice({
     },
     editFormPost: (state, data) => {
       state.isEditFormPost = data.payload;
-    }
+    },
   },
-})
+});
 
-export const { initialStatePosts, addNewPost, editPost, deletePost,  openFormPost, editFormPost, updateStateFormPost } = postsSlice.actions
+export const {
+  initialStatePosts,
+  addNewPost,
+  editPost,
+  deletePost,
+  openFormPost,
+  editFormPost,
+  updateStateFormPost,
+} = postsSlice.actions;
 
-export default postsSlice.reducer
+export default postsSlice.reducer;
